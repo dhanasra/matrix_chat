@@ -1,0 +1,41 @@
+name: instrive_chat
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.6
+  flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
+  matrix: ^0.15.6
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.0.15
+  collection: ^1.16.0
+  intl: ^0.17.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/images/instrive_logo.png
+    - assets/images/logo.png
+  
