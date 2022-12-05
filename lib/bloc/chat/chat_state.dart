@@ -7,12 +7,12 @@ class ChatInitial extends ChatState {}
 
 class MessageSent extends ChatState {}
 
-class ChatEventsLoading extends ChatState {}
+class MessageReceivedLoading extends ChatState {}
 
-class ChatEventsFetched extends ChatState {
-  final List<Event> events;
+class MessageReceivedSuccess extends ChatState {
+  final List<Event> messages;
 
-  ChatEventsFetched({
-    required this.events
+  MessageReceivedSuccess({
+    required this.messages
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instrive_chat/pages/chat/chat_viewmodel.dart';
+import 'package:instrive_chat/pages/chat/widgets/chat_item.dart';
 import 'package:instrive_chat/widgets/chat_input_field.dart';
 import 'package:matrix/matrix.dart';
 
@@ -24,7 +25,7 @@ class _ChatViewState extends State<ChatView> {
   void initState() {
     _viewModel = ChatViewModel();
     _viewModel.start();
-    context.read<ChatBloc>().add(GetChatEvents(roomId: widget.roomId));
+    context.read<ChatBloc>().add(RequestMessageEvent(roomId: widget.roomId));
     super.initState();
   }
 
@@ -41,8 +42,8 @@ class _ChatViewState extends State<ChatView> {
               builder: (_, state){
 
                 return ChatListBuilder(
-                  isLoading: state is ChatEventsLoading,
-                  events: state is ChatEventsFetched ? state.events : [],
+                  isLoading: state is MessageReceivedLoading,
+                  events: state is MessageReceivedSuccess ? state.messages : [],
                 );
               }
             )
@@ -67,6 +68,17 @@ class ChatListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+        itemCount: isLoading ? 1 : events.length,
+        reverse: true,
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        itemBuilder: (_, index){
+          return isLoading
+              ? const CircularProgressIndicator()
+              : events[index].type=="m.room.message"
+              ? ChatItem(event: events[index])
+              : const SizedBox.shrink();
+        },
+    );
   }
 }

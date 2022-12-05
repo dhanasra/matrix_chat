@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instrive_chat/config/app_config.dart';
+import 'package:instrive_chat/app/app_config.dart';
 import 'package:instrive_chat/pages/base/base_view_model.dart';
 
 import '../../bloc/authentication/auth_bloc.dart';

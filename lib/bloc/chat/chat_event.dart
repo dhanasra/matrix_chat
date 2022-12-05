@@ -3,11 +3,18 @@ part of 'chat_bloc.dart';
 @immutable
 abstract class ChatEvent {}
 
-class GetChatEvents extends ChatEvent {
+class RequestMessageEvent extends ChatEvent {
   final String roomId;
 
-  GetChatEvents({
+  RequestMessageEvent({
     required this.roomId
+  });
+}
+
+class MessageReceivedEvent extends ChatEvent {
+  final List<Event> messages;
+  MessageReceivedEvent({
+    required this.messages
   });
 }
 

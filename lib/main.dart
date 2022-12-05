@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:instrive_chat/app/app.dart';
-import 'package:instrive_chat/config/client_manager.dart';
+import 'package:instrive_chat/utils/client_manager.dart';
 import 'package:collection/collection.dart';
 
 void main() async {
@@ -15,5 +15,5 @@ void main() async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
-  runApp(const App());
+  runApp( App(clients: clients) );
 }

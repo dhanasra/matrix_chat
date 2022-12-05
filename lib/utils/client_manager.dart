@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:instrive_chat/config/app_config.dart';
+import 'package:instrive_chat/app/app_config.dart';
 import 'package:instrive_chat/db/local_storage.dart';
+import 'package:instrive_chat/utils/platform_infos.dart';
+import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 
 /*
  * Handling client creation and saving functions.
@@ -15,7 +18,11 @@ abstract class ClientManager {
 
   static Future<List<Client>> getClients({bool initialize = true}) async {
     
-    Hive.initFlutter();
+    if(PlatformInfos.isLinux){
+      Hive.init((await getApplicationSupportDirectory()).path);
+    }else {
+      Hive.initFlutter();
+    }
 
     final clientNames = <String>{};
 
@@ -97,6 +104,17 @@ abstract class ClientManager {
     return Client(
       clientName,
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
+      verificationMethods: {
+        KeyVerificationMethod.numbers,
+        if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)
+          KeyVerificationMethod.emoji,
+      },
+      importantStateEvents: <String>{
+        // To make room emotes work
+        'im.ponies.room_emotes',
+        // To check which story room we can post in
+        EventTypes.RoomPowerLevels,
+      },
       supportedLoginTypes: {
         AuthenticationTypes.password
       },

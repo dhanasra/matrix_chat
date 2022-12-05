@@ -1,8 +1,8 @@
 
 import 'package:matrix/matrix.dart';
 
-import 'app_config.dart';
-import 'client_manager.dart';
+import '../app/app_config.dart';
+import '../utils/client_manager.dart';
 
 class AppMatrix {
 

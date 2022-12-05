@@ -72,7 +72,7 @@ class ServerPickerFields extends StatelessWidget {
 
         Image.asset("assets/images/logo.png", height: 125),
 
-        Text("Welcome To Instrive Chat", style: Theme.of(context).textTheme.headline2,),
+        Text("Welcome To Instrive Chat", style: Theme.of(context).textTheme.headline6,),
 
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),

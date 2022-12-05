@@ -2,7 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:instrive_chat/config/app_config.dart';
+import 'package:instrive_chat/app/app_config.dart';
 import 'package:instrive_chat/config/matrix.dart';
 import 'package:matrix/matrix.dart';
 

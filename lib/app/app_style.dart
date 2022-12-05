@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppStyle {
 
-  static ThemeData getTheme(){
+  static ThemeData getTheme(BuildContext context){
+    final ThemeData base = ThemeData.light();
 
-    return ThemeData().copyWith(
+    return base.copyWith(
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
 
-      textTheme: const TextTheme(
-        headline2: TextStyle(
-          color: Colors.black,
-          fontSize: 18,
-          fontWeight: FontWeight.w600
-        ),
+      textTheme: Theme.of(context).textTheme.apply(
+          bodyColor: Colors.black.withOpacity(0.8),
       ),
 
 
